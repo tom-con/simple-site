@@ -1,19 +1,12 @@
-const BASE_URL = "https://shrtlnk.dev/api/v2/link"
+const BASE_URL = "https://api.coinranking.com/v2"
 const API_KEY = process.env.API_KEY
 
-const urlToShorten = {
-	url: "https://www.t3bhutan.com"
-}
-
 async function getData() {
-	const res = await fetch(BASE_URL, {
-		method: "POST",
+	const res = await fetch(BASE_URL + "/coin/Qwsogvtv82FCd", {
 		headers: {
-			"api-key": API_KEY,
-			Accept: "application/json",
-			"Content-Type": "application/json",
+			'Content-Type': 'application/json',
+			'x-access-token': API_KEY,
 		},
-		body: JSON.stringify(urlToShorten)
 	})
 
 	if (!res.ok) {
