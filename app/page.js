@@ -1,7 +1,13 @@
-import Quote from "./components/quote"
+const BASE_URL = "https://www.amdoren.com/api/currency.php"
+const API_KEY = process.env.API_KEY
+
+const fromCurrency = "USD"
+const toCurrency = "EUR"
+const amount = "100"
+
 
 async function getData() {
-	const res = await fetch('https://animechan.xyz/api/random')
+	const res = await fetch(BASE_URL + "?api_key=" + API_KEY + "&from=" + fromCurrency + "&to=" + toCurrency + "&amount=" + amount)
 
 	if (!res.ok) {
 		throw new Error('Failed to fetch data')
@@ -14,13 +20,9 @@ export default async function Home() {
 	const data = await getData()
 	console.log(data)
 	return (
-		<>
-			<Quote
-				anime={data.anime}
-				character={data.character}
-				quote={data.quote}
-			/>
-		</>
+		<div className="text-4xl text-white">
+			{data.amount}
+		</div>
 	)
 }
 
