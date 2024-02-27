@@ -1,28 +1,40 @@
-const BASE_URL = "https://api.coinranking.com/v2"
-const API_KEY = process.env.API_KEY
+"use client"
 
-async function getData() {
-	const res = await fetch(BASE_URL + "/coin/Qwsogvtv82FCd", {
-		headers: {
-			'Content-Type': 'application/json',
-			'x-access-token': API_KEY,
-		},
-	})
+import { useState } from "react"
 
-	if (!res.ok) {
-		throw new Error('Failed to fetch data')
-	}
+export default function Home() {
+	const [quotes, setQuotes] = useState([])
+	const [text, setText] = useState("Hello")
 
-	return res.json()
-}
-
-export default async function Home() {
-	const data = await getData()
-	console.log(data)
 	return (
-		<div className="text-4xl text-white">
-			{/* {data.amount} */}
+		<div className="mx-auto w-fit mt-80">
+			<div className="text-4xl text-red-500 text-center">
+				{quotes.map((quote) => {
+					return (
+						<p class>
+							{quote}
+						</p>
+					)
+				})}
+			</div>
+			<div className="text-8xl text-green-500 text-center mt-12">
+				{text}
+			</div>
+			<input
+				className="text-2xl text-black mt-12"
+				type="text"
+				onChange={(event) => setText(event.target.value)}
+			/>
+			<button
+				className="text-2xl ml-8 font-bold border-4 px-2 border-white rounded"
+				onClick={() => {
+					const newQuotes = quotes.concat([text])
+					setQuotes(newQuotes)
+					setText("")
+				}}
+			>
+				Save Text
+			</button>
 		</div>
 	)
 }
-
