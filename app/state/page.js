@@ -11,8 +11,16 @@ export default function State() {
 			<input
 				className="text-black text-4xl"
 				type="text"
-				// onChange={(event) => word = event.target.value}
-				onChange={(event) => setWord(event.target.value)}
+				// onChange={(event) => {
+				// 	console.log("BEFORE: " + word)
+				// 	word = event.target.value
+				// 	console.log("AFTER: " + word)
+				// }}
+				onChange={(event) => {
+					console.log("BEFORE: " + word)
+					setWord(event.target.value)
+					console.log("AFTER: " + word)
+				}}
 			/>
 		</div>
 	)
