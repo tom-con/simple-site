@@ -18,7 +18,7 @@ export default function Home() {
 			}
 		}
 		findCoin()
-	}, [toSearch, setCoin])
+	}, [toSearch])
 
 	return (
 		<div className="mx-auto mt-80">
